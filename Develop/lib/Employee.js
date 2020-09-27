@@ -4,7 +4,7 @@
 //Can instantiate Employee instance
 
 class Employee {
-    constructor() {
+    constructor(name, id, email) {
     //"Can set name via constructor arguments"
     this.name = name; 
     //"Can set id via constructor argument" 
@@ -14,18 +14,21 @@ class Employee {
     }
     //Can get name via getName()
     getName() {
-
+        return this.name; 
+        console.log(this.name);
     }
     //Can get id via getId()
     getId() {
-
+        return this.id;
     }
     //Can get email via getEmail()
     getEmail() {
-
+        return this.email; 
     }
     //getRole() should return \"Employee\
     getRole() {
-        
+
     }
 }
+
+module.exports = Employee
