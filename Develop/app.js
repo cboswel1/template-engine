@@ -11,32 +11,82 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 //Write file 
-const writeFileAsynch = util.promisify(fs.writeFile);
+const writeFileAsync = util.promisify(fs.writeFile);
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 function promptManager() {
     return inquirer.prompt ([
-        {
+    {
         type: "input",
         name: "name", 
         message: "What is your Manager's Name?"
-        },
-        {
+    },
+    {
         type: "input",
         name: "id", 
         message: "What is your manager's id?"
-        }, 
-        {
+    }, 
+    {
         type: "input", 
         name:"email", 
         message: "What is your managers email?"
-        }, 
-        {
+    }, 
+    {
         type: "input", 
         name: "officeNumber",
         message: "What is your manager's office Number?"
+    }
+])
+}
+
+function promptIntern() {
+    return inquirer.prompt ([
+    {
+        type: "input", 
+        name: "name",
+        message: "What is your intern's name?"
+    },
+    {
+        type: "input", 
+        name: "id", 
+        message: "What if your intern's id?"
+    }, 
+    {
+        type: "input", 
+        name: "email", 
+        message: "What is your intern's email?"
+    }, 
+    {
+        type: "input", 
+        name: "school", 
+        message: "Where did your intern's school?"
+    }
+]) 
+}
+
+function promptEngineer() {
+    return inquirer.prompt ([
+        {
+            type: "input", 
+            name: "name", 
+            message: "What is your Engineer's name?"
+        },
+        {
+            type: "input", 
+            name: "id", 
+            message: "What is your engineer's name?"
+        },
+        {
+            type: "input", 
+            name: "email", 
+            message: "What is your engineer's email?"
+        }, 
+        {
+            type: "input", 
+            name: "github", 
+            message: "What is your engineer's github name?"
         }
     ])
 }
