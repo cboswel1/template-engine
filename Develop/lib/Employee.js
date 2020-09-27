@@ -27,7 +27,7 @@ class Employee {
     }
     //getRole() should return \"Employee\
     getRole() {
-
+        return "Employee"
     }
 }
 
