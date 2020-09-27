@@ -6,7 +6,7 @@ const Employee = require("./Employee");
 
 //"Can set GitHUb account via constructor"
 class Engineer extends Employee {
-    constructor(github) {
+    constructor(name, id, email, github) {
         this.github = github;
     }
     //"getRole() should return \"Engineer\"
