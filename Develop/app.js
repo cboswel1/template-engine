@@ -10,31 +10,37 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+//write file?
+const writeFileAsync = util.promisify(fs.writeFile);
+
 
 // Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
 
 function promptManager() {
     return inquirer.prompt ([
     {
         type: "input",
-        name: "name", 
-        message: "What is your Manager's Name?"
+        name: "managerName", 
+        message: "What is your Manager's Name?",
+        default: "Big Boss"
     },
     {
         type: "input",
-        name: "id", 
-        message: "What is your manager's id?"
+        name: "managerId", 
+        message: "What is your manager's id?",
+        default: "1"
     }, 
     {
         type: "input", 
-        name:"email", 
-        message: "What is your managers email?"
+        name:"managerEmail", 
+        message: "What is your managers email?", 
+        default: "bigboss@mgs.com"
     }, 
     {
         type: "input", 
-        name: "officeNumber",
-        message: "What is your manager's office Number?"
+        name: "managerNumber",
+        message: "What is your manager's office Number?",
+        default: "123"
     }
 ])
 }
@@ -43,23 +49,27 @@ function promptIntern() {
     return inquirer.prompt ([
     {
         type: "input", 
-        name: "name",
-        message: "What is your intern's name?"
+        name: "internName",
+        message: "What is your intern's name?",
+        default: "John Dough"
     },
     {
         type: "input", 
-        name: "id", 
-        message: "What if your intern's id?"
+        name: "internId", 
+        message: "What if your intern's id?",
+        default: "3"
     }, 
     {
         type: "input", 
-        name: "email", 
-        message: "What is your intern's email?"
+        name: "internEmail", 
+        message: "What is your intern's email?", 
+        default: "meow@cat.com"
     }, 
     {
         type: "input", 
-        name: "school", 
-        message: "Where did your intern's school?"
+        name: "internSchool", 
+        message: "Where did your intern's school?", 
+        default: "School of Hard Knocks"
     }
 ]) 
 }
@@ -68,32 +78,67 @@ function promptEngineer() {
     return inquirer.prompt ([
     {
         type: "input", 
-        name: "name", 
-        message: "What is your Engineer's name?"
+        name: "engineerName", 
+        message: "What is your Engineer's name?",
+        default: "Bob The Builder"
     },
     {
         type: "input", 
-        name: "id", 
-        message: "What is your engineer's name?"
+        name: "engineerId", 
+        message: "What is your engineer's id?", 
+        default: "2"
     },
     {
         type: "input", 
-        name: "email", 
-        message: "What is your engineer's email?"
+        name: "engineerEmail", 
+        message: "What is your engineer's email?",
+        default: "Bob@builder.com"
     }, 
     {
         type: "input", 
-        name: "github", 
-        message: "What is your engineer's github name?"
+        name: "engineerGithub", 
+        message: "What is your engineer's github name?",
+        default: "bobbuilder"
     }
 ])
 }
 
-render();
+
+// and to create objects for each team member (using the correct classes as blueprints!)
+
+
+function managerObject() {
+
+    let newManager = Manager
+        (promptManager.managerName, 
+            promptManager.managerId, 
+            promptManager.managerEmail,
+            promptManager.managerOffice); 
+            
+};
+
+function engineerObject() {
+
+    let newEngineer = Engineer 
+        (promptEngineer.engineerName, 
+            promptEngineer.engineerId, 
+            promptEngineer.engineerEmail, 
+            promptEngineer.engineerGithub);
+}
+
+function internObject() {
+    
+    let newIntern = Intern 
+        (promptIntern.internName, 
+            promptIntern.internId, 
+            promptIntern.internEmail, 
+            promptIntern.internschool);
+}
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
-
+let renderedHTML = render(employees)
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the

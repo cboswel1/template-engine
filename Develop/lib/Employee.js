@@ -15,7 +15,6 @@ class Employee {
     //Can get name via getName()
     getName() {
         return this.name; 
-        console.log(this.name);
     }
     //Can get id via getId()
     getId() {
