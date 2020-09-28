@@ -10,8 +10,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-//Write file 
-const writeFileAsync = util.promisify(fs.writeFile);
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -68,32 +66,34 @@ function promptIntern() {
 
 function promptEngineer() {
     return inquirer.prompt ([
-        {
-            type: "input", 
-            name: "name", 
-            message: "What is your Engineer's name?"
-        },
-        {
-            type: "input", 
-            name: "id", 
-            message: "What is your engineer's name?"
-        },
-        {
-            type: "input", 
-            name: "email", 
-            message: "What is your engineer's email?"
-        }, 
-        {
-            type: "input", 
-            name: "github", 
-            message: "What is your engineer's github name?"
-        }
-    ])
+    {
+        type: "input", 
+        name: "name", 
+        message: "What is your Engineer's name?"
+    },
+    {
+        type: "input", 
+        name: "id", 
+        message: "What is your engineer's name?"
+    },
+    {
+        type: "input", 
+        name: "email", 
+        message: "What is your engineer's email?"
+    }, 
+    {
+        type: "input", 
+        name: "github", 
+        message: "What is your engineer's github name?"
+    }
+])
 }
 
+render();
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
+
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
