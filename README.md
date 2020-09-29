@@ -25,11 +25,13 @@ You must have node.js installed. User will then run "node app.js" from the comma
 [BootStrap CDN](https://getbootstrap.com/)
 
 ## Preview 
-<img src="" height="256" title="Home Screen">
+<img src="https://github.com/cboswel1/template-engine/blob/master/Assets/Screen%20Shot%202020-09-29%20at%2010.54.04%20AM.png?raw=true" height="256" title="Home Screen">
+
+<img src="https://github.com/cboswel1/template-engine/blob/master/Assets/Screen%20Shot%202020-09-29%20at%2010.55.28%20AM.png?raw=true" height="256" title="Home Screen">
 
 
 ## Live Preview 
-[Preview]()
+[Preview](https://youtu.be/9J1nvulU2Ew)
 
 
 ## License
