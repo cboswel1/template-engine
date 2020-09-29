@@ -21,6 +21,31 @@ const writeFileAsync = util.promisify(fs.writeFile);
 //empty array for team
 
 const team = [];
+
+async function startPrompt() {
+  try {
+    const choice = await inquirer.prompt([
+      {
+        type: "list",
+        name: "teamChoice",
+        message: "Who is on your team?",
+        choices: ["Manager", "Engineer", "Intern"],
+      },
+    ]);
+    
+    if (choice.teamChoice === "Manager") {
+      await promptManager();
+    } else if (choice.teamChoice === "Engineer") {
+      await promptEngineer();
+    } else {
+      await promptIntern();
+    }
+    await promptNewEmp();
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 async function promptManager() {
   try {
     const mngr = await inquirer.prompt([
@@ -57,9 +82,6 @@ async function promptManager() {
       mngr.managerNumber
     );
     team.push(newManager);
-
-    promptIntern();
-    
   } catch (err) {
     console.log(err);
   }
@@ -95,16 +117,13 @@ async function promptIntern() {
     ]);
 
     //new instance
-    const newIntern = new Manager(
+    const newIntern = new Intern(
       intrn.internName,
       intrn.internId,
       intrn.internEmail,
       intrn.internSchool
     );
     team.push(newIntern);
-
-    promptEngineer();
-
   } catch (err) {
     console.log(err);
   }
@@ -137,16 +156,10 @@ async function promptEngineer() {
         message: "What is your engineer's github name?",
         default: "bobbuilder",
       },
-      {
-        type: "confirm",
-        message: "Would you like to see your team?",
-        name: "renderFile",
-        default: true,
-      },
     ]);
 
     //new instance
-    const newEngineer = new Manager(
+    const newEngineer = new Engineer(
       engine.engineerName,
       engine.engineerId,
       engine.engineerEmail,
@@ -154,7 +167,24 @@ async function promptEngineer() {
     );
     team.push(newEngineer);
 
-    if (engine.renderFile === true) {
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function promptNewEmp() {
+  try {
+    const { addEmp } = await inquirer.prompt([
+      {
+        type: "confirm",
+        name: "addEmp",
+        message: "Add more members of team?",
+      },
+    ]);
+
+    if (addEmp === true) {
+      startPrompt();
+    } else {
       const html = await render(team);
       await writeFileAsync(outputPath, html);
     }
@@ -173,8 +203,8 @@ async function promptEngineer() {
 // `output` folder. You can use the variable `outputPath` above target this location.
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
-
-promptManager();
+startPrompt();
+// promptManager();
 
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
