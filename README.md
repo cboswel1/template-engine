@@ -1,4 +1,4 @@
-  # Template Engine;
+  # Template Engine
 
 
 ![](https://img.shields.io/badge/license-MIT-yellow)
