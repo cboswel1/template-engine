@@ -16,12 +16,13 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 // Write code to use inquirer to gather information about the development team members, // and to create objects for each team member (using the correct classes as blueprints!)
 
-//referenced activities from week 09 Async
+// referenced activities from week 09 Async 
 
 //empty array for team
 
 const team = [];
 
+//prompt that asks user which team members they would like to add
 async function startPrompt() {
   try {
     const choice = await inquirer.prompt([
@@ -33,6 +34,7 @@ async function startPrompt() {
       },
     ]);
     
+    //conditional for options
     if (choice.teamChoice === "Manager") {
       await promptManager();
     } else if (choice.teamChoice === "Engineer") {
@@ -46,6 +48,7 @@ async function startPrompt() {
   }
 }
 
+//manager prompt
 async function promptManager() {
   try {
     const mngr = await inquirer.prompt([
@@ -87,6 +90,7 @@ async function promptManager() {
   }
 }
 
+//Intern prompt
 async function promptIntern() {
   try {
     const intrn = await inquirer.prompt([
@@ -129,6 +133,7 @@ async function promptIntern() {
   }
 }
 
+//Engineer Prompt
 async function promptEngineer() {
   try {
     const engine = await inquirer.prompt([
@@ -172,6 +177,7 @@ async function promptEngineer() {
   }
 }
 
+//Function to add further team members
 async function promptNewEmp() {
   try {
     const { addEmp } = await inquirer.prompt([
@@ -182,6 +188,7 @@ async function promptNewEmp() {
       },
     ]);
 
+    //conditional to give option to add member, or render team
     if (addEmp === true) {
       startPrompt();
     } else {
@@ -197,14 +204,15 @@ async function promptNewEmp() {
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
+startPrompt();
+
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
 // `output` folder. You can use the variable `outputPath` above target this location.
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
-startPrompt();
-// promptManager();
+
 
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
