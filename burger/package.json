@@ -1,0 +1,24 @@
+{
+  "name": "burger_directory",
+  "version": "1.0.0",
+  "description": "A logger application using MySQL, Express, Handlebards, ORM; in the MVC design pattern. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cboswel1/burger-logger.git"
+  },
+  "author": "Christian Boswell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cboswel1/burger-logger/issues"
+  },
+  "homepage": "https://github.com/cboswel1/burger-logger#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "mysql": "^2.18.1"
+  }
+}
